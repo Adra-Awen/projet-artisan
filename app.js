@@ -9,6 +9,16 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+// DATABASE CONNECTION //
+const { sequelize } = require('./src/models');
+sequelize.authenticate()
+    .then(() => {
+        console.log('Base de données connectée avec succès.');
+    })
+    .catch(err => {
+        console.error('Impossible de se connecter à la base de données:', err);
+    });
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
