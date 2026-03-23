@@ -1,19 +1,21 @@
+const {Sequelize, DataTypes} = require('sequelize');
 const sequelize = require('../config/database');
-const category = require('./category')(sequelize);
-const speciality = require('./speciality')(sequelize);
-const entreprise = require('./entreprise')(sequelize);
-const contact = require('./contact')(sequelize);
+
+const category = require('./category')(sequelize, DataTypes);
+const speciality = require('./speciality')(sequelize, DataTypes);
+const entreprise = require('./entreprise')(sequelize, DataTypes);
+const contact = require('./contact')(sequelize, DataTypes);
 
 // RELATIONS //
 
-category.hasMany(speciality, { foreignKey: 'categoryId' });
-speciality.belongsTo(category, { foreignKey: 'categoryId' });
+category.hasMany(speciality, { foreignKey: 'id_categorie' });
+speciality.belongsTo(category, { foreignKey: 'id_categorie' });
 
-speciality.hasMany(entreprise, { foreignKey: 'specialityId' });
-entreprise.belongsTo(speciality, { foreignKey: 'specialityId' });
+speciality.hasMany(entreprise, { foreignKey: 'id_specialite' });
+entreprise.belongsTo(speciality, { foreignKey: 'id_specialite' });
 
-entreprise.hasOne(contact, { foreignKey: 'entrepriseId' });
-contact.belongsTo(entreprise, { foreignKey: 'entrepriseId' });
+entreprise.hasOne(contact, { foreignKey: 'id_entreprise' });
+contact.belongsTo(entreprise, { foreignKey: 'id_entreprise' });
 
 module.exports = {
     sequelize,
