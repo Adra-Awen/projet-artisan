@@ -29,6 +29,10 @@ sequelize.authenticate()
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+app.use((req, res, next) => {
+  console.log(`Requête reçue : ${req.method} ${req.url}`);
+  next();
+});
 // Middlewares
 app.use(logger('dev'));
 app.use(express.json());
@@ -47,11 +51,11 @@ app.use(async (req, res, next) => {
 
 
 // Routes
-app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/categorie', categoriesRouter);
-app.use('/specialitie', specialitiesRouter);
-app.use('/entreprise', entreprisesRouter);
+app.use('/categories', categoriesRouter);
+app.use('/specialites', specialitiesRouter);
+app.use('/entreprises', entreprisesRouter);
+app.use('/', indexRouter);
 // app.use('/contacts', contactRouter);
 
 // catch 404 and forward to error handler
