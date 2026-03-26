@@ -11,6 +11,8 @@ const specialitiesRouter = require('./src/routes/specialityRoutes');
 const entreprisesRouter = require('./src/routes/entrepriseRoutes');
 // const contactRouter = require('./src/routes/contactRoutes');
 
+const { category } = require('./src/models');
+
 const app = express();
 
 // DATABASE CONNECTION //
@@ -33,6 +35,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(async (req, res, next) => {
+    try {
+        const categories = await category.findAll();
+        res.locals.categories = categories;
+        next();
+    } catch (err) {
+        next(err);
+    }
+});
+
 
 // Routes
 app.use('/', indexRouter);
