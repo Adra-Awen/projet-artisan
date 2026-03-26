@@ -1,5 +1,29 @@
 extends layout
 
-block content
-  h1= title
-  p Welcome to #{title}
+h2.mb-4 Comment trouver mon artisan ?
+    .row
+      .col-md-3
+        .step-circle 1
+        p Choisir la catégorie dans le menu
+      .col-md-3
+        .step-circle 2
+        p Choisir un artisan
+      .col-md-3
+        .step-circle 3
+        p Le contacter via le formulaire
+      .col-md-3
+        .step-circle 4
+        p Une réponse sous 48h
+
+  hr
+
+  h2.text-center.my-4 Les artisans du mois
+  .row
+    each art in artisansDuMois
+      .col-md-4
+        .card.mb-4
+          .card-body
+            h5.card-title #{art.nom}
+            p.card-text #{art.specialite} - #{art.ville}
+            p.text-warning #{art.note} ★
+            a.btn.btn-primary(href=`/entreprises/${art.id_entreprise}`) Voir le profil

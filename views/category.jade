@@ -1,20 +1,20 @@
 extends layout
 
 block content
-  h1.mt-4 Artisans dans la catégorie : #{category.nom}
+  h1.mt-4 #{category.nom}
   hr
-  
-  if artisans && artisans.length > 0
-    div.row
-      each art in artisans
-        div.col-md-4.mb-4
-          div.card.h-100
-            // On imagine que tu as une colonne 'photo' et 'nom_entreprise'
-            img.card-img-top(src=`/images/${art.photo}` alt=art.nom_entreprise)
-            div.card-body
-              h5.card-title= art.nom_entreprise
-              p.card-text= art.description
-              a.btn.btn-outline-primary(href=`/artisan/${art.id}`) Voir la fiche
-  else
-    div.alert.alert-info
-      p Aucun artisan trouvé dans cette catégorie pour le moment.
+  .row
+    if entreprises && entreprises.length > 0
+      each ent in entreprises
+        .col-md-3
+          .card.mb-4.shadow-sm
+            .card-body
+              h5.card-title #{ent.nom}
+              h6.card-subtitle.mb-2.text-muted #{ent.specialiteNom || 'Artisan'}
+              p.card-text #{ent.ville}
+              p.text-warning 
+                - for (var i = 0; i < Math.round(ent.note); i++)
+                  | ★
+              a.btn.btn-outline-primary.w-100(href=`/entreprises/${ent.id_entreprise}`) Découvrir
+    else
+      p Aucun artisan dans cette catégorie pour le moment.

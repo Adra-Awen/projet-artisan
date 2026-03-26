@@ -1,0 +1,36 @@
+extends layout
+
+block content
+  .row.mt-4
+    .col-md-6
+      h1 #{entreprise.nom}
+      h4.text-muted #{entreprise.specialite} - #{entreprise.ville}
+      p.mt-4 #{entreprise.description}
+      p
+        strong Email : 
+        | #{entreprise.email}
+      p
+        strong Site web : 
+        a(href=entreprise.web target="_blank") #{entreprise.web}
+
+    .col-md-6.bg-light.p-4.rounded
+      h3 Contacter l'artisan
+      form(action="/contact" method="POST")
+        input(type="hidden" name="id_entreprise" value=entreprise.id_entreprise)
+        .row
+          .col.mb-3
+            label Nom
+            input.form-control(name="nom" required)
+          .col.mb-3
+            label Prénom
+            input.form-control(name="prenom")
+        .mb-3
+          label Email
+          input.form-control(type="email" name="email" required)
+        .mb-3
+          label Objet
+          input.form-control(name="objet")
+        .mb-3
+          label Message
+          textarea.form-control(name="message" rows="4")
+        button.btn.btn-primary.w-100(type="submit") Envoyer

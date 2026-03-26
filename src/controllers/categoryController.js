@@ -27,13 +27,14 @@ exports.getCategoryById = async (req, res) => {
 
         let listeEntreprises = [];
 
-        const specs = result.Specialities || result.specialities || [];
-        
+        const specs = result.Specialities || result.specialities || [];        
         specs.forEach(spec => {
             const ents = spec.Entreprises || spec.entreprises || [];
-            if (ents.length > 0) {
-                listeEntreprises = listeEntreprises.concat(ents);
-            }
+        
+        ents.forEach(ent => {
+            ent.speciality = spec.nom;
+            listeEntreprises.push(ent);
+        });
         });
 
         res.render('category', {
