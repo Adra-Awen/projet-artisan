@@ -48,6 +48,8 @@ app.use(async (req, res, next) => {
         next(err);
     }
 });
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 
 // Routes
@@ -56,7 +58,6 @@ app.use('/categories', categoriesRouter);
 app.use('/specialites', specialitiesRouter);
 app.use('/entreprises', entreprisesRouter);
 app.use('/', indexRouter);
-// app.use('/contacts', contactRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
