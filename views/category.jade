@@ -8,6 +8,7 @@ block content
       each ent in entreprises
         .col-md-3
           .card.mb-4.shadow-sm
+            img.card-img-top(src="/images/artisant.jpg" alt="Image par défaut de l'artisan" style="height: 180px; object-fit: cover;")
             .card-body
               h5.card-title #{ent.nom}
               h6.card-subtitle.mb-2.text-muted #{ent.specialiteNom || 'Artisan'}
