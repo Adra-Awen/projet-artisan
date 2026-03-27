@@ -4,20 +4,26 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css')
+    link(rel='stylesheet', href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css')
   body
-    nav.navbar.navbar-expand-lg.navbar-light.bg-light.mb-4
-      div.container
-        a.navbar-brand(href='/') Accueil
-        button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav')
-          span.navbar-toggler-icon
-
-        div#navbarNav.collapse.navbar-collapse
-          ul.navbar-nav
-            if categories
-              each category in categories
-                li.nav-item
-                  a.nav-link(href=`/categories/${category.id_categorie}`) #{category.nom}
-    div.container
+    nav.custom-navbar
+      .container
+        .navbar-content
+          a.navbar-brand-link(href="/")
+            .logo-area
+              img.logo(src="/images/Logo.png" alt="Logo de la région Auvergne-Rhône-Alpes" class="region-logo")
+          .nav-controls
+            .search-wrapper
+              form(action="/search", method="GET")
+                .input-group
+                  input.form-control.search-input(type="text", placeholder="Rechercher un artisan...")
+                  button.btn.search-btn(type="submit")
+                    i.bi.bi-search 
+            ul.nav-links
+              if categories
+                each category in categories
+                  li
+                    a(href=`/categories/${category.id_categorie}`, class=(title === category.nom ? 'active' : '')) #{category.nom}
       block content
 
     script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js')

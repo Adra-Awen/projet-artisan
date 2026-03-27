@@ -1,29 +1,33 @@
 extends layout
 
-h2.mb-4 Comment trouver mon artisan ?
-    .row
-      .col-md-3
-        .step-circle 1
-        p Choisir la catégorie dans le menu
-      .col-md-3
-        .step-circle 2
-        p Choisir un artisan
-      .col-md-3
-        .step-circle 3
-        p Le contacter via le formulaire
-      .col-md-3
-        .step-circle 4
-        p Une réponse sous 48h
+block content
 
-  hr
+  section.steps-section
+    .container
+      .steps-header
+        h2 Comment trouver mon artisan ?
 
-  h2.text-center.my-4 Les artisans du mois
-  .row
-    each art in artisansDuMois
-      .col-md-4
-        .card.mb-4
-          .card-body
-            h5.card-title #{art.nom}
-            p.card-text #{art.specialite} - #{art.ville}
-            p.text-warning #{art.note} ★
-            a.btn.btn-primary(href=`/entreprises/${art.id_entreprise}`) Voir le profil
+      .row.g-4.justify-content-center
+        .col-md-3.step-col
+          h3.step-number 1.
+          .step-image-box
+            img(src="/images/recherche.jpg" alt="Recherche")
+          p.step-text Choisir la catégorie dans le menu
+
+        .col-md-3.step-col
+          h3.step-number 2.
+          .step-image-box
+            img(src="/images/categorie.jpg" alt="Liste")
+          p.step-text Choisir un artisan dans la liste
+
+        .col-md-3.step-col
+          h3.step-number 3.
+          .step-image-box
+            img(src="/images/poster.jpg" alt="Contact")
+          p.step-text Le contacter via le formulaire
+
+        .col-md-3.step-col
+          h3.step-number 4.
+          .step-image-box
+            img(src="/images/reception.jpg" alt="Réponse")
+          p.step-text Une réponse sous 48h
