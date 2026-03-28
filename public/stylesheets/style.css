@@ -133,6 +133,59 @@ img.logo {
   color: #01416d;
 }
 
+/* Burger caché */
+.menu-toggle {
+  display: none;
+  margin-left: auto;
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: #01416d;
+}
+
+/* mobile */
+@media (max-width: 991px) {
+  .navbar-content {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+  }
+
+  .logo-area{
+    flex: 0 0 auto;
+  }
+
+  .menu-toggle {
+    display: block;
+    margin-left: auto;
+    flex: 0 0 auto;
+  }
+
+  .nav-controls {
+    display: none;
+    width: 100%;
+  }
+
+  .nav-controls.open {
+    display: flex !important ;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .nav-links li a {
+    display: block;
+    padding: 10px 0;
+  }
+}
+
+/* Section 1 */
 .steps-section {
   background-color: #01416d;
   width: 100vw;       
@@ -147,6 +200,8 @@ img.logo {
 
 .steps-header {
   background-color: #0074C7;
+  font-weight: bold;
+  font-style: normal;
   display: inline-block;
   padding: 15px 30px;
   margin-bottom: 50px;
@@ -154,12 +209,12 @@ img.logo {
 }
 
 
-.header-box h2 {
+.steps-header h2 {
   margin: 0;
-  color: white;
-  font-size: 1.3rem;
-  font-weight: bold;
-  text-transform: uppercase;
+  color: rgb(255, 255, 255);
+  font-size: 2.1rem;
+  font-family: 'Graphik', sans-serif !important;
+  font-weight: bold !important;
 }
 
 .step-number {
