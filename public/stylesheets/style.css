@@ -198,17 +198,6 @@ img.logo {
   color: white;
 }
 
-.steps-header {
-  background-color: #0074C7;
-  font-weight: bold;
-  font-style: normal;
-  display: inline-block;
-  padding: 15px 30px;
-  margin-bottom: 50px; 
-  align-items: center;
-  justify-content: center;
-}
-
 .step-image-box img {
   max-width: 100%;
   max-height: 100%;
@@ -220,3 +209,55 @@ img.logo {
   font-size: 1.1rem;
   margin-top: 20px;
 }
+
+/* Section 2 */
+.top-entr-section {
+  background-color: #F1F8FC;
+  padding: 80px 0;
+  color: black;
+}
+
+.section-header {
+  background-color: #0074C7;
+  color: white;
+  font-weight: bold;
+  font-style: normal;
+  display: inline-block;
+  padding: 15px 30px;
+  margin-bottom: 50px; 
+}
+
+.entr-card {
+  text-align: left;
+}
+
+.entr-image-box {
+  width: 100%;
+  height: 200px;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; 
+}
+
+.entr-image-box img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.entr-nom {
+  font-weight: bold;
+  font-size: 2.2rem;
+  margin-top: 15px;
+  margin-bottom: 5px;;
+  color: black;
+}
+
+.entr-specialite, .entr-ville {
+  font-size: 1.1rem;
+  margin-bottom: 0;
+}
+

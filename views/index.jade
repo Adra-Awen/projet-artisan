@@ -2,9 +2,10 @@ extends layout
 
 block content
 
+  //section 1
   section.steps-section
     .container
-      .steps-header
+      .section-header
         h2 Comment trouver mon artisan ?
 
       .row.g-4.justify-content-center
@@ -31,20 +32,21 @@ block content
           .step-image-box
             img(src="/images/reception.jpg" alt="Réponse")
           p.step-text Une réponse sous 48h
-    
-    section.top-artisan-section
-    .container
-      .steps-header
-        h2 Les artisans du mois
-      .row.g-3.justify-content-center
-        if topEntreprises && topEntreprises.length > 0
-          each entreprise in topEntreprises
-            .col-md-3.step-col
-              .step-image-box
-                img(src="/images/artisan.jpg" alt="Photo artisan par défaut")
-              h3.top-entreprise-section= entreprise.nom
-              p.top-entreprise-section= entreprise.speciality ? entreprise.speciality.nom : 'Artisan'
-              p.top-entreprise-section= entreprise.ville
-              .stars-container
-        else
-          p Aucun artisan à afficher pour le moment.
+
+    //section 2
+    section.top-entr-section
+      .container
+        .section-header
+          h2 Les artisans du mois
+        .row.g-3.justify-content-between
+          if topEntreprises && topEntreprises.length > 0
+            each entreprise in topEntreprises
+              .col-md-3.step-col
+                .entr-card
+                  .entr-image-box
+                    img(src="/images/artisan.jpg" alt="Photo artisan par défaut")
+                  h3.entr-nom= entreprise.nom
+                  p.entr-specialite= entreprise.speciality ? entreprise.speciality.nom : 'Artisan'
+                  p.entr-ville= entreprise.ville
+          else
+            p Aucun artisan à afficher pour le moment.
