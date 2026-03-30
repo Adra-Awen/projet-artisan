@@ -285,40 +285,17 @@ img.logo {
 }
 
 /* Footer */
-
 .site-footer {
   background-color: #F1F8FC !important;
   padding: 40px 0;
   color: black;
 }
 
-.footer-row {
-  display: flex;
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-}
-.footer-logo-col {
-  display: flex;
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-  margin-right: 50px;
-}
-
 .footer-logo {
   width: 300px;
-  max-width: 100%;
   height:auto;
   object-fit: contain;
   display: block;
-}
-
-.footer-address { 
-  display: flex;
-  flex-direction: column;
-  justify-content: top;
-  flex: 1;
 }
 
 .footer-address h5 {
@@ -338,17 +315,10 @@ img.logo {
   margin-bottom: 2px;
 }
 
-.footer-links {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: top;
-}
-
 .footer-links a {
   color: black;
-  text-decoration: none;;
+  text-decoration: none;
+  display: block;
 }
 
 .footer-links a:hover {
