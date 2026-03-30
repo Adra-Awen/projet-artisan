@@ -1,21 +1,29 @@
 extends layout
 
 block content
-  h1.mt-4 #{category.nom}
-  hr
-  .row
-    if entreprises && entreprises.length > 0
-      each ent in entreprises
-        .col-md-3
-          .card.mb-4.shadow-sm
-            img.card-img-top(src="/images/artisan.jpg" alt="Image par défaut de l'artisan" style="height: 180px; object-fit: cover;")
-            .card-body
-              h5.card-title #{ent.nom}
-              h6.card-subtitle.mb-2.text-muted #{ent.specialiteNom || 'Artisan'}
-              p.card-text #{ent.ville}
-              p.text-warning 
-                - for (var i = 0; i < Math.round(ent.note); i++)
-                  | ★
-              a.btn.btn-outline-primary.w-100(href=`/entreprises/${ent.id_entreprise}`) Découvrir
-    else
-      p Aucun artisan dans cette catégorie pour le moment.
+  section.top-entr-section
+    .container 
+      .section-header
+        h2 #{category.nom}
+      .row.g-3.justify-content-between
+        if entreprises && entreprises.length > 0
+          each ent in entreprises
+            .col-md-4.step-col
+                a.entr-link(href=`/entreprise/${ent.id_entreprise}`)                  
+                  .entr-card
+                    .entr-image-box
+                        img(src="/images/artisan.jpg" alt="Photo artisan par défaut")
+                      h3.entr-nom= ent.nom
+                      p.entr-specialite= ent.specialiteNom || 'Artisan'
+                      p.entr-ville= ent.ville
+                      .stars-container
+                        - var rating = ent.note || 0
+                        - for (var i = 1; i <= 5; i++)
+                          if i <= Math.floor(rating)
+                            i.bi.bi-star-fill.star-icon
+                          else if i === Math.ceil(rating) && (rating % 1 >= 0.5)
+                            i.bi.bi-star-half.star-icon
+                          else
+                            i.bi.bi-star.star-icon
+        else
+          p Aucun artisan à afficher pour le moment.
