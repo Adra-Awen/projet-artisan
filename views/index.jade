@@ -34,17 +34,17 @@ block content
           p.step-text Une réponse sous 48h
 
     //section 2
-    section.top-entr-section
-      .container
-        .section-header
-          h2 Les artisans du mois
-        .row.g-3.justify-content-between
-          if topEntreprises && topEntreprises.length > 0
-            each entreprise in topEntreprises
-              .col-md-3.step-col
-                a.entr-link(href=`/entreprise/${entreprise.id_entreprise}`)
-                  .entr-card
-                    .entr-image-box
+  section.top-entr-section
+    .container
+      .section-header
+        h2 Les artisans du mois
+      .row.g-3.justify-content-between
+        if topEntreprises && topEntreprises.length > 0
+          each entreprise in topEntreprises
+            .col-md-3.step-col
+                a.entr-link(href=`/entreprise/${entreprise.id_entreprise}`)                  
+                .entr-card
+                  .entr-image-box
                       img(src="/images/artisan.jpg" alt="Photo artisan par défaut")
                     h3.entr-nom= entreprise.nom
                     p.entr-specialite= entreprise.speciality ? entreprise.speciality.nom : 'Artisan'
@@ -57,6 +57,5 @@ block content
                       each star in entreprise.emptyStars
                         i.bi.bi-star.star-icon
 
-
-          else
-            p Aucun artisan à afficher pour le moment.
+        else
+          p Aucun artisan à afficher pour le moment.
