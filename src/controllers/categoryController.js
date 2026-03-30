@@ -15,23 +15,42 @@ exports.getAllCategories = async () => {
 exports.getCategoryById = async (req, res) => {
     try {
         const { id } = req.params;
-        const result = await category.findByPk(id, {
-                include: [{model: speciality, include: [{model: entreprise}]}]
-        });
+        let result;
+        const queryOptions = {
+                include: [{
+                    model: speciality,
+                    as: 'speciality', 
+                    include: [{
+                        model: entreprise,
+                        as: 'entreprise',
+                    }]
+                }]
+            };
+        if (!isNaN(id)) {
+            result = await category.findByPk(id, queryOptions);
+        } else {
+            result = await category.findOne({
+                where: { nom: id },
+                ...queryOptions
+            });
+        }
+
         if (!result) {
             return res.status(404).json({ error: 'Catégorie non trouvée.' });
         }
 
         let listeEntreprises = [];
 
-        const specs = result.Specialities || result.specialities || [];        
+        const specs = result.speciality || [];        
+
         specs.forEach(spec => {
-            const ents = spec.Entreprises || spec.entreprises || [];
-        
-        ents.forEach(ent => {
-            ent.speciality = spec.nom;
-            listeEntreprises.push(ent);
-        });
+            const ents = spec.entreprise || [];
+            const entsArray = Array.isArray(ents) ? ents : [ents];
+
+            entsArray.forEach(ent => {
+                ent.specialiteNom = spec.nom;
+                listeEntreprises.push(ent);
+            });
         });
 
         res.render('category', {
