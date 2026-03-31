@@ -43,19 +43,19 @@ block content
           each entreprise in topEntreprises
             .col-md-3.step-col
                 a.entr-link(href=`/entreprise/${entreprise.id_entreprise}`)                  
-                .entr-card
-                  .entr-image-box
-                      img(src="/images/artisan.jpg" alt="Photo artisan par défaut")
-                    h3.entr-nom= entreprise.nom
-                    p.entr-specialite= entreprise.speciality ? entreprise.speciality.nom : 'Artisan'
-                    p.entr-ville= entreprise.ville
-                    .stars-container
-                      each star in entreprise.fullStars 
-                        i.bi.bi-star-fill.star-icon 
-                      each star in entreprise.halfStars 
-                        i.bi.bi-star-half.star-icon
-                      each star in entreprise.emptyStars
-                        i.bi.bi-star.star-icon
+                  .entr-card
+                    .entr-image-box
+                        img(src="/images/artisan.jpg" alt="Photo artisan par défaut")
+                      h3.entr-nom= entreprise.nom
+                      p.entr-specialite= entreprise.speciality ? entreprise.speciality.nom : 'Artisan'
+                      p.entr-ville= entreprise.ville
+                      .stars-container
+                        each star in entreprise.fullStars 
+                          i.bi.bi-star-fill.star-icon 
+                        each star in entreprise.halfStars 
+                          i.bi.bi-star-half.star-icon
+                        each star in entreprise.emptyStars
+                          i.bi.bi-star.star-icon
 
         else
           p Aucun artisan à afficher pour le moment.
