@@ -2,48 +2,53 @@ extends layout
 
 block content
   section.artisan-card
-    .container 
+    .container
       .section-header
         h2 #{category.nom}
-    .row.mt-4
-      .col-md-6
-        .entr-image-box
-          img(src="/images/artisan.jpg" alt="Photo artisan par défaut")
-      .col-md-6
-        h2 #{entreprise.nom}
-        p.text-muted #{entreprise.speciality ? entreprise.speciality.nom : 'Artisan'} - #{entreprise.ville}      
-        p.mt-4 #{entreprise.description}
-        p
-          strong Email : 
-          | #{entreprise.email}
-        p
-          strong Site web : 
-          a(href=entreprise.web target="_blank") #{entreprise.web}
+      .section-descripton
+        .row.justify-content-center.align-items-center.row-narrow
+          .col-auto.d-flex.justify-content-center
+            .entr-image-page
+              img(src="/images/artisan.jpg" alt="Photo artisan par défaut")
+          .col-md-6.ps-md-5
+            h2 #{entreprise.nom}
+            p.text-muted #{entreprise.speciality ? entreprise.speciality.nom : 'Artisan'} - #{entreprise.ville}      
+            p.mt-4 #{entreprise.description}
+            p
+              strong Email : 
+              | #{entreprise.email}
+            p
+              strong Site web : 
+              a(href=entreprise.web target="_blank") #{entreprise.web}
 
-    section.form
-      .row.mt-4.justify-content-center.align-items-center
-        .col-md-6
-          h2 Contacter l'artisan
+    section.form.py-5
+    .container
+      .row.justify-content-center
+        .col-md-10.col-lg-8
+          h2.mb-5 Contacter l'artisan
           form(action='/entreprises/' + entreprise.id_entreprise + '/contact' method="POST")
-            .col.mb-3
-              label Nom
-              input.form-control(name="nom" required)
-            .col.mb-3
-              label Prénom
-              input.form-control(name="prenom" required)
-            .mb-3
-              label Email
-              input.form-control(type="email" name="email" required)
-            .mb-3
-              label Code Postal
-              input.form-control(type="text" name="code_postal" required)
-            .mb-3
+            .row.g-4.mb-4
+              .col-12.col-md-6
+                label Nom
+                input.form-control(name="nom" required)
+              .col-12.col-md-6
+                label Prénom
+                input.form-control(name="prenom" required)
+            .row.g-4.mb-4
+              .col-12.col-md-6
+                label Email
+                input.form-control(type="email" name="email" required)
+              .col-12.col-md-6
+                label Code Postal
+                input.form-control(type="text" name="code_postal" required)
+            .mb-4
               label Objet
               input.form-control(name="objet" required)
-            .mb-3
+            .mb-4
               label Message
               textarea.form-control(name="message" rows="4" required)
             button.btn.btn-primary(type="submit") Envoyer
-        .row.mt-4.mb-5.text-end
+        .row.mt-5.mb-5.text-end
           .col-12
-            a.btn.btn-primary(href="/") Artisan suivant
+            if category 
+              a.btn.btn-primary(href=`/categories/${category.id_categorie}`) Retour à la catégorie #{category.nom}
