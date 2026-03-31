@@ -1,6 +1,14 @@
 extends layout
 
 block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+  section.error-page
+    .container 
+      .row.mt-5.justify-content-center
+        .col-md-8.text-center
+          h1.error 404 - Page non trouvée
+          p La page que vous recherchez est introuvable.
+        .col-md-8.text-center
+          img(src="/images/erreur404.jpg" alt="Image erreur 404" class="img-fluid mt-4")
+      .row.mt-5.mb-5.text-end
+          .col-12
+            a.btn.btn-primary(href="/") Retour à l'accueil

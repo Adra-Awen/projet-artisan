@@ -331,6 +331,15 @@ img.logo {
   color: black !important;
 }
 
+/* Page 404 */
+.error {
+    font-weight: 700;
+  font-size: 2.2rem;
+  margin-top: 15px;
+  color: #0074C7;
+
+}
+
 /* Footer */
 .site-footer {
   background-color: #F1F8FC !important;
