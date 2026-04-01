@@ -12,6 +12,7 @@ exports.getAllCategories = async () => {
     }
 };
 
+/*liste de tous les artisants d'une catégorie*/
 exports.getCategoryById = async (req, res) => {
     try {
         const { id } = req.params;
@@ -41,6 +42,7 @@ exports.getCategoryById = async (req, res) => {
 
         let listeEntreprises = [];
 
+        /*injection de la specialité pour chaque entreprise*/
         const specs = result.speciality || [];        
 
         specs.forEach(spec => {
