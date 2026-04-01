@@ -25,6 +25,32 @@ router.get('/', async (req, res, next) => {
     }
 });
 
+/*Barre de recherche - Opératueur LIKE Sequelize*/
+router.get('/search', async (req, res) => {
+    try {
+        const searchTerm = req.query.q;
+        const categories = await categoryController.getAllCategories();
+        const { Op } = require('sequelize');
+        const entreprises = await Entreprise.findAll({
+            where: {
+                nom: {
+                    [Op.like]: `%${searchTerm}%`
+                }
+            }
+        });
+
+        res.render('search', {
+            title: 'Résultats de recherche',
+            categories,
+            entreprises,
+            searchTerm
+        });
+    } catch (error) {
+        next(error);
+    }
+});
+
+
 router.get('/entreprise/:id', entrepriseController.getEntrepriseById);
 
 router.use('/categories', categoryRoutes);

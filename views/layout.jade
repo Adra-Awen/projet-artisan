@@ -18,7 +18,7 @@ html
             .search-wrapper
               form(action="/search", method="GET")
                 .input-group
-                  input.form-control.search-input(type="text", placeholder="Rechercher un artisan...")
+                  input.form-control.search-input(type="text", name="q", placeholder="Rechercher un artisan...")
                   button.btn.search-btn(type="submit")
                     i.bi.bi-search 
             ul.nav-links

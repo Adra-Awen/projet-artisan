@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  .container.py-5
+    h2 Résultats de recherche
+    hr.mb-5
+    
+    if entreprises && entreprises.length > 0
+      .row
+        each artisan in entreprises
+          .col-md-4.mb-4
+            .card.h-100.shadow-sm
+              .card-body
+                h5.card-title.fw-bold #{artisan.nom}
+                p.text-muted #{artisan.ville}
+                a.btn.btn-primary.w-100(href=`/entreprises/${artisan.id_entreprise}`) Voir le profil
+    else
+      .alert.alert-warning.mt-4
+        | Aucun artisan trouvé avec ce nom.
+        br
+        a.alert-link(href="/") Retour à l'accueil
