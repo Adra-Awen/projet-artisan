@@ -1,21 +1,33 @@
 extends layout
 
 block content
-  .container.py-5
-    h2 Résultats de recherche
-    hr.mb-5
-    
-    if entreprises && entreprises.length > 0
-      .row
-        each artisan in entreprises
-          .col-md-4.mb-4
-            .card.h-100.shadow-sm
-              .card-body
-                h5.card-title.fw-bold #{artisan.nom}
-                p.text-muted #{artisan.ville}
-                a.btn.btn-primary.w-100(href=`/entreprises/${artisan.id_entreprise}`) Voir le profil
-    else
-      .alert.alert-warning.mt-4
-        | Aucun artisan trouvé avec ce nom.
-        br
-        a.alert-link(href="/") Retour à l'accueil
+  section.search_artisan
+      .container
+        .section-header
+          h2 Recherche
+        .row.g-3.justify-content-between
+          if entreprises && entreprises.length > 0
+            .row
+              each ent in entreprises
+                .col-md-4.step-col
+                  a.entr-link(href=`/entreprise/${ent.id_entreprise}`)
+                    .entr-image-box
+                        img(src="/images/artisan.jpg" alt="Photo artisan par défaut")
+                      h3.entr-nom= ent.nom
+                      p.entr-specialite= ent.specialiteNom || 'Artisan'
+                      p.entr-ville= ent.ville
+                      .stars-container
+                        - var rating = ent.note || 0
+                        - for (var i = 1; i <= 5; i++)
+                          if i <= Math.floor(rating)
+                            i.bi.bi-star-fill.star-icon
+                          else if i === Math.ceil(rating) && (rating % 1 >= 0.5)
+                            i.bi.bi-star-half.star-icon
+                          else
+                            i.bi.bi-star.star-icon
+
+          else
+            p Aucun artisan trouvé pour cette recherche.
+        .row.mt-4.mb-5.text-end
+          .col-12
+            a.btn.btn-primary(href="/") Retour à l'accueil

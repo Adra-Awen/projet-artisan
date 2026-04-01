@@ -52,6 +52,20 @@ router.get('/search', async (req, res) => {
 
 
 router.get('/entreprise/:id', entrepriseController.getEntrepriseById);
+router.get('/mentions', (req, res) => {
+    res.render('mentions', { title: 'Mentions légales' });
+});
+router.get('/donnees', (req, res) => {
+    res.render('donnees', { title: 'Données personnelles' });
+});
+router.get('/accessibilite', (req, res) => {
+    res.render('accessibilite', { title: 'Accessibilité' });
+});
+router.get('/cookies', (req, res) => {
+    res.render('cookies', { title: 'Cookies' });
+});
+
+
 
 router.use('/categories', categoryRoutes);
 router.use('/specialities', specialityRoutes);

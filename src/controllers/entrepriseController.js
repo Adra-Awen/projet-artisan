@@ -1,4 +1,6 @@
-const { entreprise, speciality, contact, category } = require('../models/index');
+const { entreprise, speciality, contact, category, search } = require('../models/index');
+/*importantion de Op pour les requetes de recherche*/
+const { Op } = require('sequelize');
 
 exports.getAllEntreprises = async (req, res) => {
     try {
@@ -10,6 +12,7 @@ exports.getAllEntreprises = async (req, res) => {
     }
 };
 
+/*Récupère une entreprise par son ID*/
 exports.getEntrepriseById = async (req, res) => {
     try {
         const { id } = req.params;
@@ -32,6 +35,7 @@ exports.getEntrepriseById = async (req, res) => {
     }
 };
 
+/* Formulaire de contact pour une entreprise*/
 exports.sendContactEmail = async (req, res) => {
     console.log('Données reçues pour le contact :', req.body);
     try {
@@ -60,6 +64,7 @@ exports.sendContactEmail = async (req, res) => {
     }
 };
 
+/*Afficher les 3 entreprises du mois*/
 exports.getTopEntreprises = async () => {
     try {
         const results = await entreprise.findAll({
@@ -85,4 +90,32 @@ exports.getTopEntreprises = async () => {
         console.error('Erreur lors de la récupération des top entreprises :', error);
         throw new Error('Une erreur est survenue lors de la récupération des top entreprises.');
     } 
+};
+
+/*liste de tous les artisans correspondant au mot-clé de recherche*/
+exports.search = async (req, res) => {
+    try {
+        const query = req.query.q;
+
+        const results = await entreprise.findAll({
+            where: {
+                nom: { [Op.like]: `%${query}%` }
+            },
+            include : [{ model: speciality, as: 'speciality' }]
+        });
+
+        let listeEntreprises = [];
+        /* injection de 'specialiteNom' */
+        results.forEach(ent => {
+            const entData = ent.toJSON();
+            entData.specialiteNom = ent.speciality ? ent.speciality.nom : 'Artisan';
+            listeEntreprises.push(entData);
+        });
+        res.render('search', {
+            entreprises: listeEntreprises,
+            query: query
+        });
+    } catch (error) {
+        res.status(500).json({ error: 'Une erreur est survenue lors de la recherche d\'entreprises.' });
+    }
 };
