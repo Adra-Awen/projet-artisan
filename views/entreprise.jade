@@ -15,11 +15,11 @@ block content
             p.text-muted #{entreprise.speciality ? entreprise.speciality.nom : 'Artisan'} - #{entreprise.ville}      
             p.mt-4 #{entreprise.description}
             p
-              strong Email : 
-              | #{entreprise.email}
+              i.bi.bi-envelope-fill.me-2 
+              a(href="mailto:#{entreprise.email}") Email
             p
-              strong Site web : 
-              a(href=entreprise.web target="_blank") #{entreprise.web}
+              i.bi.bi-globe.me-2
+              a(href=entreprise.web target="_blank") Site internet
 
     section.form.py-5
     .container
