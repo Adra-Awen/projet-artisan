@@ -7,8 +7,8 @@ block content
     .container
       .section-header
         h2 Comment trouver mon artisan ?
-
-      .row.g-4.justify-content-center
+      // grille de 4 colonnes pour les étapes
+      .row.g-4.justify-content-center.d-none.d-md-flex 
         .col-md-3.step-col
           h3.step-number 1.
           .step-image-box
@@ -32,6 +32,45 @@ block content
           .step-image-box
             img(src="/images/reception.jpg" alt="Réponse")
           p.step-text Une réponse sous 48h
+
+        //carousel pour tablette et mobile
+      #stepsCarousel.carousel.slide.d-md-none(data-bs-ride="carousel")
+        .carousel-inner
+          .carousel-item.active
+            .step-col
+              h3.step-number 1.
+              .step-image-box
+                img(src="/images/recherche.jpg" alt="Recherche")
+              p.step-text Choisir la catégorie dans le menu
+
+          .carousel-item
+            .step-col
+              h3.step-number 2.
+              .step-image-box
+                img(src="/images/categorie.jpg" alt="Liste")
+              p.step-text Choisir un artisan dans la liste
+
+          .carousel-item
+            .step-col
+              h3.step-number 3.
+              .step-image-box
+                img(src="/images/poster.jpg" alt="Contact")
+              p.step-text Le contacter via le formulaire
+
+          .carousel-item
+            .step-col
+              h3.step-number 4.
+              .step-image-box
+                img(src="/images/reception.jpg" alt="Réponse")
+              p.step-text Une réponse sous 48h
+
+        a.carousel-control-prev(href="#stepsCarousel" role="button" data-bs-target="#stepsCarousel" data-bs-slide="prev")
+          span.carousel-control-prev-icon(aria-hidden="true")
+          span.visually-hidden Précédent
+
+        a.carousel-control-next(href="#stepsCarousel" role="button" data-bs-target="#stepsCarousel" data-bs-slide="next")
+          span.carousel-control-next-icon(aria-hidden="true")
+          span.visually-hidden Suivant
 
     //section 2
   section.top-entr-section
