@@ -1,3 +1,4 @@
+const { RelationshipType } = require('sequelize/lib/errors/database/foreign-key-constraint-error');
 const { entreprise, speciality, contact, category, search } = require('../models/index');
 /*importantion de Op pour les requetes de recherche*/
 const { Op } = require('sequelize');
@@ -7,7 +8,6 @@ exports.getAllEntreprises = async (req, res) => {
         const entreprises = await entreprise.findAll();
         res.status(200).json(entreprises);
     } catch (error) {
-        console.error('Erreur lors de la récupération des entreprises :', error);
         res.status(500).json({ error: 'Une erreur est survenue lors de la récupération des entreprises.' });
     }
 };
@@ -32,18 +32,30 @@ exports.getEntrepriseById = async (req, res) => {
             category: result.speciality ? result.speciality.category : null
         });
     } catch (error) {
-        console.error('Erreur lors de la récupération de l\'entreprise :', error);
         res.status(500).json({ error: 'Une erreur est survenue lors de la récupération de l\'entreprise.' });
     }
 };
 
-/* Formulaire de contact pour une entreprise*/
+// Formulaire de contact pour une entreprise
 exports.sendContactEmail = async (req, res) => {
-    console.log('Données reçues pour le contact :', req.body);
     try {
         const { id } = req.params;
         const { nom, prenom, email, cp, objet, message } = req.body;
+        
+        //validation côté serveur
+        if (!nom || !prenom || !email || !cp || !objet || ! message){
+            return res.status(400).send("Tous les champs sont obligatoires");
+        }
 
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)){
+            return res.status(400).send("Adresse email invalise");
+        }
+
+        if (message.length < 10) {
+            return res.status(400).send('Le message doit contenir au moins 10 caractères.');
+        }
+        
         await contact.create({
             nom_expediteur: nom,
             prenom_expediteur: prenom,
@@ -58,10 +70,10 @@ exports.sendContactEmail = async (req, res) => {
 
         res.render('success', {
             title: 'Message envoyé',
+            metaDescription: 'Confirmation d\'envoi du formulaire de contact',
             message: `Votre message a été envoyé à ${art.nom}.`
         });
     } catch (error) {
-        console.error('Erreur lors de l\'envoi du message de contact :', error);
         res.status(500).json({ error: 'Une erreur est survenue lors de l\'envoi du message de contact.' });   
     }
 };
@@ -89,7 +101,6 @@ exports.getTopEntreprises = async () => {
         return entreprisesWithRatings;
 
     } catch (error) {
-        console.error('Erreur lors de la récupération des top entreprises :', error);
         throw new Error('Une erreur est survenue lors de la récupération des top entreprises.');
     } 
 };
