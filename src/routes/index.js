@@ -16,7 +16,9 @@ router.get('/', async (req, res, next) => {
         const categories = await categoryController.getAllCategories();
         const topEntreprises = await entrepriseController.getTopEntreprises();
         res.render('index', {
-            title: 'Accueil',
+            title: 'Accueil - Trouve ton artisan',
+            metaDescription: 'Trouvez les meilleurs artisans de la région Auvergne-Rhône-Alpes pour tous vos projets de rénovation, construction et décoration. Notre annuaire en ligne vous permet de rechercher facilement des professionnels qualifiés par catégorie et localisation.',
+            metakeywords: 'artisans, annuaire, Auvergne-Rhône-Alpes, services, alimentation, rénovation, construction, professionnels qualifiés',
             categories,
             topEntreprises
         });

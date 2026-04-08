@@ -25,7 +25,9 @@ exports.getEntrepriseById = async (req, res) => {
         }
 
         res.render('entreprise', {
-            title: result.nom,
+            title: result.seo_title || result.nom,
+            metaDescription: result.seo_description || `Découvrez ${result.nom}, un artisan spécialisé en ${result.speciality ? result.speciality.nom : 'artisanat'} dans la région Auvergne-Rhône-Alpes. Trouvez facilement des professionnels qualifiés pour tous vos projets de rénovation, construction et décoration liés à ${result.speciality ? result.speciality.nom : 'l\'artisanat'}.`,
+            metaKeywords: result.seo_keywords || `${result.nom}, artisan ${result.speciality ? result.speciality.nom : ''}, annuaire, Auvergne-Rhône-Alpes, services, professionnels qualifiés`,
             entreprise: result,
             category: result.speciality ? result.speciality.category : null
         });
@@ -112,6 +114,9 @@ exports.search = async (req, res) => {
             listeEntreprises.push(entData);
         });
         res.render('search', {
+            title: `Résultats de recherche pour "${query}"`,
+            metaDescription: `Découvrez les résultats de recherche pour "${query}" parmi les meilleurs artisans de la région Auvergne-Rhône-Alpes. Trouvez facilement des professionnels qualifiés pour tous vos projets de rénovation, construction et décoration liés à "${query}".`,
+            metaKeywords: `artisans ${query}, annuaire ${query}, Auvergne-Rhône-Alpes, services ${query}, professionnels qualifiés ${query}`,
             entreprises: listeEntreprises,
             query: query
         });
