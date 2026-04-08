@@ -16,11 +16,11 @@ block content
             p.mt-4 #{entreprise.description}
             p
               i.bi.bi-envelope-fill.me-2 
-              a(href="mailto:#{entreprise.email}") Email
+              a(href="mailto:#{entreprise.email}" rel="noopener noreferrer") Email
             p
               i.bi.bi-globe.me-2
-              a(href=entreprise.web target="_blank") Site internet
-
+              a(href=entreprise.web target="_blank" rel="noopener noreferrer") Site internet
+    // Formulaire de contact
     section.form.py-5
     .container
       .row.justify-content-center

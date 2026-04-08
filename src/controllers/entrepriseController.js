@@ -1,6 +1,6 @@
 const { RelationshipType } = require('sequelize/lib/errors/database/foreign-key-constraint-error');
 const { entreprise, speciality, contact, category, search } = require('../models/index');
-/*importantion de Op pour les requetes de recherche*/
+//importantion de Op pour les requetes de recherche
 const { Op } = require('sequelize');
 
 exports.getAllEntreprises = async (req, res) => {
@@ -12,7 +12,7 @@ exports.getAllEntreprises = async (req, res) => {
     }
 };
 
-//Récupère une entreprise par son ID*
+//Récupère une entreprise par son ID + affiche de la fiche détaillée
 exports.getEntrepriseById = async (req, res) => {
     try {
         const { id } = req.params;
@@ -36,7 +36,7 @@ exports.getEntrepriseById = async (req, res) => {
     }
 };
 
-// Formulaire de contact pour une entreprise
+// Formulaire de contact pour une entreprise depuis le formulaire de l'entreprise
 exports.sendContactEmail = async (req, res) => {
     try {
         const { id } = req.params;
@@ -78,7 +78,7 @@ exports.sendContactEmail = async (req, res) => {
     }
 };
 
-/*Afficher les 3 entreprises du mois*/
+//Afficher les 3 entreprises du mois
 exports.getTopEntreprises = async () => {
     try {
         const results = await entreprise.findAll({
@@ -105,7 +105,7 @@ exports.getTopEntreprises = async () => {
     } 
 };
 
-/*liste de tous les artisans correspondant au mot-clé de recherche*/
+//liste tous les artisans correspondant au mot-clé de recherche
 exports.search = async (req, res) => {
     try {
         const query = req.query.q;
