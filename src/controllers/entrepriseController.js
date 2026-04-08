@@ -12,7 +12,7 @@ exports.getAllEntreprises = async (req, res) => {
     }
 };
 
-/*Récupère une entreprise par son ID*/
+//Récupère une entreprise par son ID*
 exports.getEntrepriseById = async (req, res) => {
     try {
         const { id } = req.params;

@@ -14,7 +14,7 @@ const { category } = require('./src/models');
 
 const app = express();
 
-// DATABASE CONNECTION //
+// DATABASE CONNECTION
 const { sequelize } = require('./src/models');
 sequelize.authenticate()
     .then(() => {
@@ -28,10 +28,6 @@ sequelize.authenticate()
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use((req, res, next) => {
-  console.log(`Requête reçue : ${req.method} ${req.url}`);
-  next();
-});
 // Middlewares
 app.use(logger('dev'));
 app.use(express.json());
@@ -72,7 +68,6 @@ app.use(function(err, req, res, next) {
 
 const PORT = 3000;
 app.listen(PORT, () => {
-    console.log(`Serveur lancé sur http://localhost:${PORT}`);
 });
 
 module.exports = app;

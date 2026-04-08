@@ -52,8 +52,7 @@ module.exports = (sequelize, DataTypes) => {
         id_specialite: {
             type: DataTypes.INTEGER,
             allowNull: false
-        }
-
+        },
     }, {
         tableName: 'entreprise',
         timestamps: false
