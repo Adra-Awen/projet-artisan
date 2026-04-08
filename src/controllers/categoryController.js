@@ -57,6 +57,8 @@ exports.getCategoryById = async (req, res) => {
 
         res.render('category', {
             title: result.nom,
+            metaDescription: `Découvrez les meilleurs artisans spécialisés en ${result.nom} dans la région Auvergne-Rhône-Alpes. Trouvez facilement des professionnels qualifiés pour tous vos projets de rénovation, construction et décoration liés à ${result.nom}.`,
+            metaKeywords: `artisans ${result.nom}, annuaire ${result.nom}, Auvergne-Rhône-Alpes, services ${result.nom}, professionnels qualifiés ${result.nom}`,
             category: result,
             entreprises: listeEntreprises
         });
