@@ -12,6 +12,7 @@ const entreprisesRouter = require('./src/routes/entrepriseRoutes');
 
 const app = express();
 
+
 // DATABASE CONNECTION
 const { sequelize, category, entreprise, speciality, contact } = require('./src/models');
 sequelize.authenticate()
